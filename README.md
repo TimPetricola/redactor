@@ -1,4 +1,4 @@
-# redactor
+# redactor [![Gem Version](https://badge.fury.io/rb/redactor.svg)](https://rubygems.org/gems/redactor) [![Build Status](https://travis-ci.org/TimPetricola/redactor.svg)](https://travis-ci.org/TimPetricola/redactor)
 
 Redact parts of text defined by custom rules (e.g. emails, phone numbers).
 
