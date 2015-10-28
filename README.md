@@ -30,7 +30,7 @@ Redactor.define do
 end
 
 Redactor.format(input)
-"To ride a [REDACTED], contact me: [REDACTED] or [REDACTED]."
+# => "To ride a [REDACTED], contact me: [REDACTED] or [REDACTED]."
 
 Redactor.format(input) do |extract|
   "[#{extract.reason.upcase}]"
