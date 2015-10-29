@@ -23,7 +23,7 @@ redactor = Redactor.new do
     palindromes = words.select { |w| w.length > 2 && w == w.reverse }
     palindromes.map do |w|
       start = input.index(w)
-      finish = start + w.length
+      finish = start + w.length - 1
       [start, finish]
     end
   end

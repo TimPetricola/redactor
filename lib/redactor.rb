@@ -31,7 +31,7 @@ class Redactor
   def format(text, &block)
     extract(text).each_with_object(text.clone) do |extract, redacted_text|
       sub = block_given? ? block.call(extract) : default_replacement
-      redacted_text[extract.start...extract.finish] = sub
+      redacted_text[extract.start..extract.finish] = sub
     end
   end
 end

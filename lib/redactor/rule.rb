@@ -28,7 +28,7 @@ class Redactor
           rule: self,
           value: match[0],
           start: match.begin(0),
-          finish: match.end(0)
+          finish: match.end(0) - 1
         )
       end
     end
@@ -39,7 +39,7 @@ class Redactor
 
         Extract.new(
           rule: self,
-          value: input[start...finish],
+          value: input[start..finish],
           start: start,
           finish: finish
         )

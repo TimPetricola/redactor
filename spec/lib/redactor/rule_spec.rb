@@ -38,7 +38,7 @@ describe Redactor::Rule do
         expect(extract.rule).to be rule
         expect(extract.value).to eq 'foo bar'
         expect(extract.start).to eq 6
-        expect(extract.finish).to eq 13
+        expect(extract.finish).to eq 12
       end
 
       it 'returns values and positions of others matches' do
@@ -46,7 +46,7 @@ describe Redactor::Rule do
         expect(extract.rule).to be rule
         expect(extract.value).to eq 'foobar'
         expect(extract.start).to eq 36
-        expect(extract.finish).to eq 42
+        expect(extract.finish).to eq 41
       end
     end
 
@@ -61,7 +61,7 @@ describe Redactor::Rule do
             .select { |w| w.length > 2 && w == w.reverse }
             .map do |word|
               start = input.index(word)
-              finish = start + word.length
+              finish = start + word.length - 1
               [start, finish]
             end
         end
@@ -74,7 +74,7 @@ describe Redactor::Rule do
         expect(extract.rule).to be rule
         expect(extract.value).to eq 'kayak'
         expect(extract.start).to eq 9
-        expect(extract.finish).to eq 14
+        expect(extract.finish).to eq 13
       end
 
       it 'returns values and positions of others matches' do
@@ -82,7 +82,7 @@ describe Redactor::Rule do
         expect(extract.rule).to be rule
         expect(extract.value).to eq 'racecar'
         expect(extract.start).to eq 29
-        expect(extract.finish).to eq 36
+        expect(extract.finish).to eq 35
       end
     end
   end
