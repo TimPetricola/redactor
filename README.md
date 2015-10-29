@@ -10,7 +10,7 @@ require 'redactor'
 input = 'To ride a kayak, contact me: tim.petricola@gmail.com or 1 234 567 8901.'
 
 # these rules are only good enough for an example
-@redactor = Redactor.new do
+redactor = Redactor.new do
   # US phone
   rule :phone, /(\+?1[ \.-]?)?\(?\d{3}\)?[ \.-]?\d{3}[ \.-]?\d{4}/
 
