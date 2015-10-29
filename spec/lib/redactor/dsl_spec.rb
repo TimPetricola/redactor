@@ -8,13 +8,16 @@ describe Redactor::DSL do
           rule :foo, /foo/
         end
 
+        redactor = double
         rule = double('Redactor::Rule')
+
         expect(Redactor::Rule).to(
           receive(:new).with(:foo, /foo/).and_return(rule)
         )
-        expect(Redactor).to receive(:register_rule).with(rule)
 
-        Redactor::DSL.run(definitions)
+        expect(redactor).to receive(:register_rule).with(rule)
+
+        Redactor::DSL.run(redactor, definitions)
       end
     end
 
@@ -26,16 +29,19 @@ describe Redactor::DSL do
           rule(:foo, &proc)
         end
 
+        redactor = double
         rule = double('Redactor::Rule')
+
         expect(Redactor::Rule).to(
           receive(:new).with(:foo, nil) do |*_args, &block|
             expect(proc).to be(block)
             rule
           end
         )
-        expect(Redactor).to receive(:register_rule).with(rule)
 
-        Redactor::DSL.run(definitions)
+        expect(redactor).to receive(:register_rule).with(rule)
+
+        Redactor::DSL.run(redactor, definitions)
       end
     end
   end

@@ -1,12 +1,18 @@
-module Redactor
+class Redactor
   class DSL
-    def rule(reason, regex = nil, &block)
-      rule = Rule.new(reason, regex, &block)
-      Redactor.register_rule(rule)
+    attr_reader :redactor
+
+    def initialize(redactor)
+      @redactor = redactor
     end
 
-    def self.run(block)
-      new.instance_eval(&block)
+    def rule(reason, regex = nil, &block)
+      rule = Rule.new(reason, regex, &block)
+      redactor.register_rule(rule)
+    end
+
+    def self.run(redactor, block)
+      new(redactor).instance_eval(&block)
     end
   end
 end

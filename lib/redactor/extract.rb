@@ -1,4 +1,4 @@
-module Redactor
+class Redactor
   class Extract
     attr_reader :rule, :value, :start, :finish
 

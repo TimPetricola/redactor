@@ -1,16 +1,16 @@
 require 'spec_helper'
 
-RSpec::Matchers.define :be_redacted do |reason|
+RSpec::Matchers.define :be_redacted do |reason, redactor|
   match do |actual|
-    Redactor.extract(actual).any? do |extract|
+    redactor.extract(actual).any? do |extract|
       extract.value == actual && extract.reason == reason
     end
   end
 end
 
 describe 'Redactor rules' do
-  before do
-    Redactor.define do
+  let(:redactor) do
+    Redactor.new do
       # US phone
       rule :phone, /(\+?1[ \.-]?)?\(?\d{3}\)?[ \.-]?\d{3}[ \.-]?\d{4}/
 
@@ -18,8 +18,6 @@ describe 'Redactor rules' do
       rule :email, /[\w\.]+ ?(@|at) ?\w+\ ?(\.|dot) ?\w{1,3}/i
     end
   end
-
-  after { Redactor.clear }
 
   {
     '1 234 567 8901' => :phone,
@@ -36,7 +34,7 @@ describe 'Redactor rules' do
     'foo AT bar DOT baz' => :email
   }.each do |value, reason|
     describe(value) do
-      it { should be_redacted(reason) }
+      it { should be_redacted(reason, redactor) }
     end
   end
 end

@@ -1,3 +1,3 @@
-module Redactor
+class Redactor
   VERSION = '0.1.0'
 end

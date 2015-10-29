@@ -1,4 +1,4 @@
-module Redactor
+class Redactor
   class Rule
     attr_reader :reason, :regex, :block
 
